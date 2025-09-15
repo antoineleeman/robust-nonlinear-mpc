@@ -25,7 +25,7 @@ pip install -r requirements.txt
 ## Solver Generation
 Run the script corresponding to your system to generate the necessary solvers:
 ```bash
-python generate_osqp_pendulum.py
+python solver/generate_osqp_rockETH.py
 ```
 Then, install:
 ```bash
@@ -47,14 +47,8 @@ For instance, you can plot the results of the last experiment using:
 python main_pendulum_robust_closed_loop.py
 ```
 
-Use `--help` to see all available options:
-```bash
-python main_pendulum_robust_closed_loop.py --help
-```
 ## Notes
 - All scripts save results in their respective output folders. The corresponding plot function will retrieve the last saved data and plot it.
-
-
 
 
 
