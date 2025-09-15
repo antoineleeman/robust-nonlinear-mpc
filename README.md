@@ -2,6 +2,9 @@ This repository contains scripts for running robust control simulations and expe
 
 ---
 
+![Robust MPC Diagram](tintin.png)
+
+
 ## Prerequisites
 - Python **3.11+**
 - Required packages: see `requirements.txt`
