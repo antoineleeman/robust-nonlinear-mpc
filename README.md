@@ -1,6 +1,6 @@
 # Guaranteed Robust Nonlinear MPC via Disturbance Feedback
 
-This repository contains scripts for running robust control simulations and experiments on **pendulum**, **quadrotor**, and **RockETH** systems.  
+This repository contains scripts for running robust control simulations and experiments on **pendulum**, **quadrotor**, and **rocket** systems.  
 
 ---
 
