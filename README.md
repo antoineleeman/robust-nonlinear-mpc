@@ -18,7 +18,7 @@ source .venv/bin/activate
 # On Windows:
 .venv\Scripts\activate
 
-Install dependencies:
+# Install dependencies:
 pip install -r requirements.txt
 ```
 
