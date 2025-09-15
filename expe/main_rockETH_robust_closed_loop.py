@@ -1,4 +1,4 @@
-from dyn.rockETH.rockETH import RockETH
+from dyn.rockETH.rocket import Rocket
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -30,7 +30,7 @@ def _tube_halfwidth_to_unit(halfw, lb, ub):
 np.random.seed(0)
 
 def generate(N: int | None = None):
-    m = RockETH()
+    m = Rocket()
     Q = np.diag([
         10.0,  # x
         10.0,  # y
@@ -149,7 +149,7 @@ def generate(N: int | None = None):
     for i in range(simulation_time_steps):
         if i > 0 and hasattr(solver, 'reset_warm_start'):
             solver.reset_warm_start()
-        print(f"[RockETH] Step {i+1}/{simulation_time_steps}: solving ...")
+        print(f"[Rocket] Step {i+1}/{simulation_time_steps}: solving ...")
         # Solve the SCP-SLS problem at each time step
         solution = solver.solve(x0)
 
@@ -159,7 +159,7 @@ def generate(N: int | None = None):
         t_jac[i] = tj
         t_qp[i] = tq
         t_riccati[i] = tb
-        print(f"[RockETH]   -> done (Δt: jac={solution.get('t_jac_ms', 0.0):.2f} ms, qp={solution.get('t_qp_ms', 0.0):.2f} ms, riccati={solution.get('t_backward_ms', 0.0):.2f} ms)")
+        print(f"[Rocket]   -> done (Δt: jac={solution.get('t_jac_ms', 0.0):.2f} ms, qp={solution.get('t_qp_ms', 0.0):.2f} ms, riccati={solution.get('t_backward_ms', 0.0):.2f} ms)")
         # Store the backoff trajectories
         backoff_trajectory_x[:, :, i] = solution['backoff_x'].T
         backoff_trajectory_u[:, :, i] = solution['backoff_u'].T
@@ -455,7 +455,7 @@ def plot():
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="RockETH robust closed-loop experiment")
+    parser = argparse.ArgumentParser(description="Rocket robust closed-loop experiment")
     parser.add_argument('--run', action='store_true', help='Run the closed-loop simulation (generate data)')
     parser.add_argument('--N', type=int, default=None, help='Horizon length (overrides default if provided)')
     args = parser.parse_args()

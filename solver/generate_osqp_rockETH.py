@@ -1,5 +1,5 @@
 # generate_osqp_integrator.py
-from dyn.rockETH.rockETH import RockETH
+from dyn.rockETH.rocket import Rocket
 from dyn.LTV import LTV
 from solver.qp_jit import QP
 from dyn.integrator import Integrator
@@ -13,7 +13,7 @@ if os.path.exists(build_dir):
     shutil.rmtree(build_dir)
 
 
-m = RockETH()
+m = Rocket()
 
 Q = np.eye(m.nx)
 R = np.eye(m.nu)

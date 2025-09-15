@@ -1,4 +1,4 @@
-from dyn.rockETH.rockETH import RockETH
+from dyn.rockETH.rocket import Rocket
 from solver.SCP_SLS_jit import SCP_SLS as SCP_SLS_impl
 from solver.nlp_soft_constraints import NLPSoftConstraints
 
@@ -39,7 +39,7 @@ def compact_dual_legend(ax, title=None, ncol=3):
 
 
 def _configure_model(dt):
-    m = RockETH()
+    m = Rocket()
     m.dt = dt
     # Disturbance scaling consistent with both scripts
     sigma_theta = np.deg2rad(2.0)
@@ -235,8 +235,8 @@ def generate():
     # Identical disturbance sequence for both controllers
     rng = np.random.default_rng(123)
     # Uniform disturbances in [-1, 1] for each state at each step
-    # Shape (T, nx). We'll infer nx from RockETH once to make W.
-    nx_tmp = RockETH().nx
+    # Shape (T, nx). We'll infer nx from Rocket once to make W.
+    nx_tmp = Rocket().nx
     #W = rng.uniform(-1.0, 1.0, size=(T - 1, nx_tmp))  # T-1 disturbances between steps
     W = -0.8*np.ones((T - 1, nx_tmp))
 
