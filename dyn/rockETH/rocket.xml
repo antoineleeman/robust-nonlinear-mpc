@@ -1,0 +1,61 @@
+<mujoco model="tintin_landing">
+  <!-- ===== Visual / Render ===== -->
+  <visual>
+    <map znear="0.01"/>
+    <quality shadowsize="4096"/>
+    <headlight/>
+  </visual>
+
+  <!-- ===== Physics ===== -->
+  <option gravity="0 0 -9.81"/>
+
+  <!-- ===== Assets ===== -->
+  <asset>
+    <!-- Rocket mesh -->
+    <mesh name="rocket_mesh" file="rocket.stl"/>
+
+    <!-- Floor checker -->
+    <texture name="checker" type="2d" builtin="checker" width="512" height="512"
+             rgb1="0.2 0.3 0.4" rgb2="0.1 0.1 0.1"/>
+    <material name="mat_checker" texture="checker" reflectance="0.3" shininess="1" specular="1" texrepeat="20 20"/>
+
+    <!-- Sky dome -->
+    <material name="sky_blue" rgba="0.6 0.8 1.0 1.0"/>
+
+    <!-- Flame material (glow + slight transparency) -->
+    <material name="mat_flame" rgba="1.0 0.5 0.0 0.9" emission="2.5" specular="0" shininess="0"/>
+  </asset>
+
+  <!-- ===== World ===== -->
+  <worldbody>
+    <!-- Ground + sky -->
+    <geom type="plane" size="1000 1000 0.1" pos="0 0 -32.5" material="mat_checker"/>
+    <geom type="sphere" size="10000" pos="0 0 0" material="sky_blue" contype="0" conaffinity="0" group="1"/>
+
+    <!-- Light + camera -->
+    <light pos="0 0 5" dir="0 0 -1" castshadow="true" directional="true"/>
+    <camera name="default_cam" mode="fixed" pos="0 -731.2 408.3" euler="29.18 0 90.5"/>
+
+    <!-- ===== Rocket (free body) ===== -->
+    <body name="rocket" pos="0 0 100">
+      <joint name="root" type="free"/>
+      <geom type="mesh" mesh="rocket_mesh" rgba="0.8 0.2 0.2 1"/>
+      <!-- Nozzle site along -Z (down) -->
+      <site name="nozzle_site" pos="0 0 -10" size="0.02" rgba="0 1 0 1"/>
+
+      <!-- Flame attached to rocket so it follows pose/orientation -->
+      <body name="flame" pos="0 0 0" quat="1 0 0 0">
+        <geom name="flame_geom" type="capsule" size="2.0 20." pos="0 0 0" material="mat_flame"
+              contype="0" conaffinity="0" group="3" priority="1"/>
+        <light name="flame_light" pos="0 0 2" dir="0 0 1" castshadow="true"
+               diffuse="1.0 0.95 0.4" ambient="0.5 0.3 0.2" specular="0.2 0.2 0.2"
+               cutoff="80" exponent="8" attenuation="0.1 0.005 0.0001"/>
+      </body>
+    </body>
+
+    <!-- (Optional) tracker -->
+    <body name="tracker" pos="0 0 100">
+      <geom type="sphere" size="0.05" rgba="0 1 0 1"/>
+    </body>
+  </worldbody>
+</mujoco>
