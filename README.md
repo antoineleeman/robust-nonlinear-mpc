@@ -44,12 +44,12 @@ Always make sure to regenerate the solvers if you run new experiments. In partic
 ## Running Experiments
 Most of the scripts starting with `main_` are used to run experiments. Options can be specified via command-line arguments. For example:
 ```bash
-python main_rockETH_robust_closed_loop.py --run
+python main_rocket_robust_closed_loop.py --run
 ```
 
 For instance, you can plot the results of the last experiment using:
 ```bash
-python main_rockETH_robust_closed_loop.py
+python main_rocket_robust_closed_loop.py
 ```
 
 ## Notes
