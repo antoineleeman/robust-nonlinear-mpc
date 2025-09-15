@@ -4,7 +4,7 @@ This repository contains scripts for running robust control simulations and expe
 
 ---
 
-![Robust MPC Diagram](tintin.png)
+![Robust MPC Diagram](tintin_v3.png)
 
 
 ## Prerequisites
