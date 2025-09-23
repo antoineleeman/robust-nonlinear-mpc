@@ -7,7 +7,7 @@ This repository contains scripts for running robust control simulations and expe
 ![Robust MPC Diagram](tintin_dark.png)
 
 <p align="center">
-  <img src="demo.gif" alt="Simulation Robust MPC" width="600"/>
+  <img src="closed_loop_last_tube.gif" alt="Simulation Robust MPC" width="600"/>
 </p>
 
 ## Prerequisites
